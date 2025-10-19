@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Bhavesh</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      height: 100vh;
+      background: linear-gradient(to bottom right, #ff6a6a, #ff4d4d);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+    }/* Intro */
+.intro {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #ff7a7a, #ff4d4d);
+  font-size: 3rem;
+  font-weight: bold;
+  animation: fadeIn 2s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.next-btn {
+  margin-top: 20px;
+  background: white;
+  color: #ff4d4d;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Notebook */
+.notebook {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  overflow: hidden;
+  display: none;
+}
+.page {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #fff;
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.8s ease;
+  backface-visibility: hidden;
+}
+
+.page h2 {
+  color: #ff4d4d;
+  margin-bottom: 10px;
+}
+
+.page p {
+  font-size: 1rem;
+  line-height: 1.5;
+  width: 80%;
+}
+
+.hidden { transform: rotateY(-180deg); }
+
+.cake-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.cake {
+  position: relative;
+  width: 120px;
+  height: 80px;
+  background: #ffb347;
+  border-radius: 10px;
+  margin-top: 30px;
+  overflow: hidden;
+  animation: popIn 1s ease-in-out;
+}
+
+.chocolate {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #5a3d2b;
+  animation: drip 2s ease-in-out forwards;
+}
+
+@keyframes drip {
+  0% { top: -20px; }
+  100% { top: 0; }
+}
+@keyframes popIn {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+.cake-text {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+.cut-btn {
+  margin-top: 20px;
+  background: white;
+  color: #ff4d4d;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.heart {
+  position: absolute;
+  bottom: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: rotate(45deg);
+  animation: floatUp 6s linear infinite;
+}
+.heart::before, .heart::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: -10px; top: 0; }
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+  100% { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="intro" id="intro">
+    Happy Birthday Bhavesh
+    <button class="next-btn" onclick="showNotebook()">Next</button>
+  </div>  <div class="notebook" id="notebook">
+    <div class="page" id="page1">
+      <h2>Page 1</h2>
+      <p>Hey Bhavesh! Wishing you the happiest of birthdays. You make every day brighter just by being yourself. I hope your day is filled with laughter, smiles, and all the good things you deserve.</p>
+    </div>
+    <div class="page hidden" id="page2">
+      <h2>Page 2</h2>
+      <p>Life is full of small moments that make big memories. Today is one of those days. May your new year be filled with adventures, learning, and all the happiness you can handle!</p>
+    </div>
+    <div class="page hidden" id="page3">
+      <h2>Page 3</h2>
+      <p>Thank you for being such an amazing person. Never stop being kind, curious, and true to yourself. Have a wonderful birthday and an even better year ahead!</p>
+    </div>
+  </div>  <div class="cake-section" id="cakeSection">
+    <div class="cake">
+      <div class="chocolate"></div>
+    </div>
+    <div class="cake-text">Happy Birthday Bhavesh 🎂</div>
+  </div>  <script>
+    const notebook = document.getElementById('notebook');
+    const pages = [document.getElementById('page1'), document.getElementById('page2'), document.getElementById('page3')];
+    const cakeSection = document.getElementById('cakeSection');
+    let currentPage = 0;
+
+    function showNotebook() {
+      document.getElementById('intro').style.display = 'none';
+      notebook.style.display = 'block';
+    }
+
+    notebook.addEventListener('click', () => {
+      if (currentPage < pages.length - 1) {
+        pages[currentPage].classList.add('hidden');
+        currentPage++;
+        pages[currentPage].classList.remove('hidden');
+      } else {
+        notebook.style.display = 'none';
+        showCakeOption();
+      }
+    });
+
+    function showCakeOption() {
+      const cutBtn = document.createElement('button');
+      cutBtn.textContent = 'Cut Cake';
+      cutBtn.className = 'cut-btn';
+      cutBtn.onclick = showCake;
+      document.body.appendChild(cutBtn);
+    }
+
+    function showCake() {
+      document.querySelector('.cut-btn').remove();
+      cakeSection.style.display = 'flex';
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 300);
+  </script></body>
+</html>
